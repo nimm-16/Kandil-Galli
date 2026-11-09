@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kandil Galli</title>
+<meta name="description" content="Handmade akash kandils from the artisan families of Kandil Galli, Mahim.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Yatra+One&display=swap" rel="stylesheet">
+<script src="/vendor/qrcode.js"></script>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#chat" aria-label="Kandil Galli home">
+      <span class="brand-mark" id="brandMark"></span>
+      <span><span class="brand-name">Kandil Galli</span><span class="brand-sub" style="display:block">Handmade in Mahim, Mumbai</span></span>
+    </a>
+    <nav class="navlinks" aria-label="Main">
+      <a href="#chat" data-nav="chat">Shop assistant</a>
+      <a href="#shop" data-nav="shop">All kandils</a>
+      <a href="#celebrate" data-nav="celebrate">Bulk and custom</a>
+      <a href="#craft" data-nav="craft">Our craft</a>
+    </nav>
+    <a class="cartbtn" href="#cart" aria-label="Cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
+      <span class="count" id="cartCount">0</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <!-- CHAT -->
+  <section class="view" id="view-chat" aria-label="Shop assistant">
+    <div class="lane">
+      <svg class="lane-svg" id="laneSvg" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMin slice" aria-hidden="true"></svg>
+      <div class="lane-copy">
+        <h1>Generations of craft. A brighter way to celebrate.</h1>
+        <p>Akash kandils cut and assembled by hand in a Mahim lane since the 1940s.</p>
+      </div>
+    </div>
+    <div class="chat-layout">
+      <div class="thread" id="thread" aria-live="polite"></div>
+      <aside class="aside" aria-label="On your phone">
+        <div class="panel">
+          <h3>Continue on your phone</h3>
+          <p>Scan to open this shop in your phone’s browser. No app needed.</p>
+          <div class="qr-mini" id="qrMini"></div>
+          <a href="#qr" class="btn btn-ghost btn-wide" style="margin-top:12px">Open the QR card</a>
+        </div>
+        <div class="panel">
+          <h3>Planning a bigger celebration?</h3>
+          <p>Societies, offices, weddings, hotels and events. Big kandils are made to order, with your colours, names or logo.</p>
+          <button class="btn btn-main btn-wide" style="margin-top:12px" data-act="startBulk">Plan a bulk order</button>
+        </div>
+      </aside>
+    </div>
+    <div class="composer" id="composer">
+      <div class="composer-in">
+        <form id="chatForm" autocomplete="off">
+          <label for="chatInput" class="sr">Message the shop</label>
+          <input id="chatInput" maxlength="500" placeholder="Ask about designs, prices, bulk orders…" enterkeyhint="send">
+          <button type="button" class="iconbtn ideas" data-act="ideas" title="Show suggestions" aria-label="Show suggestions">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z"/></svg>
+          </button>
+          <button class="iconbtn send" aria-label="Send">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </form>
+        <div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section class="view" id="view-shop" aria-label="All kandils">
+    <div class="wrap">
+      <div class="pagehead">
+        <h1>All kandils</h1>
+        <p>Every piece is hand-cut and hand-assembled by artisan households in Kandil Galli. Small kandils for homes and balconies, big ones for societies, offices and celebrations.</p>
+      </div>
+      <div class="toolbar">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <label for="shopSearch" class="sr">Search kandils</label>
+          <input id="shopSearch" type="search" placeholder="Search: butterfly, matka, fabric…">
+        </div>
+        <div class="filterrow" id="filterRow"></div>
+      </div>
+      <div class="banner" role="note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+        <span>Prices shown are proposed catalogue prices within the lane’s current bands (₹25 to ₹1,200 for standard kandils, up to about ₹2,200 for fabric). The artisan households will confirm final prices.</span>
+      </div>
+      <div class="grid" id="shopGrid"></div>
+      <div id="shopEmpty"></div>
+    </div>
+    <a href="#chat" class="btn btn-main backchat">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z"/></svg>
+      Ask the shop
+    </a>
+  </section>
+
+  <!-- CART -->
+  <section class="view" id="view-cart" aria-label="Cart">
+    <div class="wrap">
+      <div class="pagehead"><h1>Your cart</h1></div>
+      <div id="cartBody"></div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT -->
+  <section class="view" id="view-checkout" aria-label="Checkout">
+    <div class="wrap">
+      <div class="pagehead"><h1>Checkout</h1><p>Choose how to receive your kandils and review your order.</p></div>
+      <div id="checkoutBody"></div>
+    </div>
+  </section>
+
+  <!-- ORDER CONFIRMATION -->
+  <section class="view" id="view-order" aria-label="Order confirmation">
+    <div class="wrap" id="orderBody"></div>
+  </section>
+
+  <!-- CELEBRATE -->
+  <section class="view" id="view-celebrate" aria-label="Bulk and custom orders">
+    <div class="celebrate-hero">
+      <div class="wrap">
+        <h1 class="display">Planning a bigger celebration?</h1>
+        <p>Big kandils from the lane are made only to order, so every bulk piece is made for you. Tell us what you need and the makers will call with a quote.</p>
+        <div class="who-grid"><span>Housing societies</span><span>Offices, décor and gifting</span><span>Weddings</span><span>Hotels and cafés</span><span>Events and mandals</span></div>
+        <div class="actions" style="margin-top:20px"><button class="btn btn-add" data-act="startBulk">Start planning</button><a class="btn btn-ghost" style="color:var(--on-band);border-color:rgba(255,255,255,.3)" href="#shop" data-filter="custom">See custom pieces</a></div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="sect">
+        <h2>How a bulk order works</h2>
+        <ol class="howlist">
+          <li><b>Tell us the occasion</b><span>Quantity, sizes, designs, date and where it should go. Takes about two minutes.</span></li>
+          <li><b>The makers call you</b><span>They confirm designs and quote at the lane’s agreed prices.</span></li>
+          <li><b>Book with a 30% advance</b><span>The advance pays for materials and fixes your slot in the makers’ evening hours.</span></li>
+          <li><b>Made to order, delivered</b><span>Pay the balance on delivery or pickup.</span></li>
+        </ol>
+        <p class="lead" style="margin-top:14px">Booking early helps. Orders placed from August move big pieces away from the last evenings before Diwali, when the lane is busiest.</p>
+      </div>
+      <div class="sect">
+        <h2>What can be customised</h2>
+        <p class="lead">Customisation stays within the craft: hand-cut panels and the lane’s own shapes, never printed imitations.</p>
+        <div class="customs"><span>Colour preferences</span><span>Names or monograms cut into a panel</span><span>Your logo cut into a panel</span><span>A custom design</span><span>Special quantities</span></div>
+      </div>
+      <div class="sect" style="border:0">
+        <h2>Big and custom kandils</h2>
+        <div class="rail" id="celebrateRail" style="margin-right:-16px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRAFT / STORY -->
+  <section class="view" id="view-craft" aria-label="Our craft">
+    <div class="story-hero">
+      <div class="wrap">
+        <h1>More than a lantern. Generations of craft.</h1>
+        <p>Kandil Galli is a narrow lane in Mahim West, near Mahim station, where families have made akash kandils by hand since at least the late 1940s. For a few weeks every year the whole lane glows.</p>
+        <div class="facts-strip">
+          <div><b>1940s</b><span>Kandils made in the lane since at least then</span></div>
+          <div><b>20 to 40</b><span>Artisan families, mostly Marathi</span></div>
+          <div><b>2 to 3</b><span>Generations of making, in the households we met</span></div>
+          <div><b>100 to 150</b><span>Lanterns made per home each season</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="sect">
+        <h2>The lane</h2>
+        <div class="prose">
+          <p>Reports name two clusters in the lane, Kavle Wadi and Kadri Wadi. One account traces the craft to nineteenth-century Eid lanterns; today the lane sits near Citylight Market and St Michael’s Church and sells for Diwali, Christmas and other festivals.</p>
+          <p>Most makers work in the evenings, after physically demanding day jobs. Materials are bought in bulk from mid to end September, and every season they try to make as many colours, sizes and new designs as they can. Prices are agreed together, because undercutting a neighbour, in the makers’ words, “would lead to differences in the community”.</p>
+        </div>
+      </div>
+      <div class="sect">
+        <h2>How a kandil is made</h2>
+        <p class="lead">The craft core the makers protect: hand-cut paper and fabric, hand assembly, tassels and family designs.</p>
+        <ol class="process">
+          <li><div><b>Materials, bought together</b><span>Paper, fabric and trims are sourced in bulk in late September to keep costs down.</span></div></li>
+          <li><div><b>A reusable frame</b><span>Many households have moved from bamboo to reusable frames, saving time every season.</span></div></li>
+          <li><div><b>Hand-cutting</b><span>Patterns are cut by hand into paper or fabric. No printed imitations.</span></div></li>
+          <li><div><b>Hand assembly</b><span>Panels are pasted and fitted to the frame, one face at a time.</span></div></li>
+          <li><div><b>Tassels and tails</b><span>Long paper tails and tassels finish the traditional shapes.</span></div></li>
+          <li><div><b>Lit in the lane</b><span>Finished kandils hang outside the homes where they were made.</span></div></li>
+        </ol>
+      </div>
+      <div class="sect">
+        <h2>A lane that lights many festivals</h2>
+        <div class="fests">
+          <div class="fest"><b>Eid</b><span>Where the craft reportedly began.</span></div>
+          <div class="fest"><b>Diwali</b><span>The lane’s busiest weeks, from Navratri on.</span></div>
+          <div class="fest"><b>Christmas</b><span>Paper stars and lanterns for homes and churches nearby.</span></div>
+          <div class="fest"><b>New Year</b><span>Akash kandils stay up in the Konkan and Goa until New Year.</span></div>
+        </div>
+      </div>
+      <div class="sect">
+        <h2>What the makers have already changed</h2>
+        <p class="lead">Minds on the margin are not marginal minds. Before anyone suggested anything, the lane had already innovated on its own.</p>
+        <div class="innov" id="innovList"></div>
+      </div>
+      <div class="sect">
+        <h2>Our artisans</h2>
+        <p class="lead">Makers are not named here. Names, photographs and family stories will be added only with each household’s consent.</p>
+        <div class="makers" id="makerCards"></div>
+      </div>
+      <div class="sect">
+        <h2>Why buying handmade matters</h2>
+        <div class="prose"><p>Plastic and machine-made lanterns win on looks that change every year and on being sold everywhere. The lane competes on something they can’t copy: hand skill passed down in families. When you buy here, the customer and the income stay with the makers. There is no commission on this marketplace.</p></div>
+        <div class="keep">
+          <div><b>What stays</b><span>Hand-cut paper and fabric, tassels, family designs, traditional shapes, hand assembly, reusable frames.</span></div>
+          <div><b>What can change</b><span>Colour palettes and finishes, standard frame sizes, folding frames for shipping, ready-made LED fittings.</span></div>
+          <div><b>What the lane avoids</b><span>Printed imitations of hand-cut work, single-use or thermocol frames, factory production.</span></div>
+        </div>
+      </div>
+      <p class="sources">Sources: conversations with maker households in Kandil Galli on 7 November 2026 (IIM Ahmedabad, ISIKG course field visit); Free Press Journal (2026); DNA (2018); Mumbai Live; LocalSamosa (2025); The Brighter World (2025); Lokmat / PTI (2023).</p>
+    </div>
+  </section>
+
+  <!-- QR -->
+  <section class="view" id="view-qr" aria-label="QR code">
+    <div class="wrap">
+      <div class="qr-stage">
+        <div>
+          <div class="standee" id="standee">
+            <svg class="lane-svg" id="laneSvg2" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMin slice" aria-hidden="true"></svg>
+            <h2>Kandil Galli</h2>
+            <p class="tg">Generations of craft. A brighter way to celebrate.</p>
+            <div class="qrtile" id="qrBig" role="img" aria-label="QR code that opens the Kandil Galli marketplace"></div>
+            <p class="scan">Scan to shop handmade kandils</p>
+            <p class="addr">No app needed. Kandil Galli, Mahim West, Mumbai</p>
+          </div>
+          <div class="actions" style="justify-content:center;margin-top:14px">
+            <button class="btn btn-main" data-act="dlPng">Download PNG</button>
+            <button class="btn btn-ghost" data-act="dlSvg">Download SVG</button>
+          </div>
+          <p id="dlMsg" style="text-align:center;font-size:14px;color:var(--ink-2);margin-top:8px"></p>
+        </div>
+        <div class="stack">
+          <div>
+            <h1 class="display" style="font-size:30px">QR access</h1>
+            <p style="color:var(--ink-2);margin-top:6px;max-width:58ch">This code opens the live marketplace in a phone’s browser. Print it for a stall, or show it on screen during a demo.</p>
+          </div>
+          <div class="box">
+            <h3>Where the code points</h3>
+            <div class="urlbox" id="qrUrlText"></div>
+            <button class="btn btn-ghost" style="margin-top:10px" data-act="shareShop">Share shop link</button>
+            <div class="field" style="margin-top:12px">
+              <label for="qrUrlInput">Change the link</label>
+              <span class="hint">If the marketplace moves to its own domain, paste the new address and the code updates everywhere on this device.</span>
+              <input class="inp" id="qrUrlInput" type="url" inputmode="url" placeholder="https://">
+              <span class="err">Enter a full web address starting with https://</span>
+            </div>
+            <div class="actions"><button class="btn btn-main" data-act="qrSave">Use this link</button><button class="btn btn-ghost" data-act="qrReset">Reset to default</button></div>
+          </div>
+          <div class="box">
+            <h3>Opening it on another phone</h3>
+            <ol class="howto">
+              <li>Check that the shop address above opens on your phone. Use the public storefront address when printing a card.</li>
+              <li>Open the phone’s camera and point it at the code. Tap the link that appears.</li>
+              <li>The shop opens in the browser, starting at the shop assistant. Nothing to install, no sign-up.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAKERS' DESK -->
+  <section class="view" id="view-makers-desk" aria-label="Makers' desk">
+    <div class="wrap" id="deskBody"></div>
+  </section>
+
+  <footer class="foot" id="foot">
+    <div class="wrap foot-in">
+      <span>Kandil Galli, Mahim West, Mumbai. A student project from IIM Ahmedabad (ISIKG). No commission: customers and income stay with the makers.</span>
+      <span><a href="#order">My orders</a> &nbsp; <a href="#qr">QR card</a> &nbsp; <a href="#makers-desk">Makers’ desk</a></span>
+    </div>
+  </footer>
+</main>
+
+<nav class="botnav" aria-label="Main">
+  <div class="botnav-in">
+    <a href="#chat" data-nav="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 10h8M8 13h5"/></svg>Assistant</a>
+    <a href="#shop" data-nav="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v3"/><path d="M12 5 7 10l5 8 5-8-5-5Z"/><path d="M10 18l-1 4M14 18l1 4M12 18v4"/></svg>Kandils</a>
+    <a href="#celebrate" data-nav="celebrate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-5h4v5"/></svg>Bulk</a>
+    <a href="#craft" data-nav="craft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c4-1 6-4 6-9V4"/><path d="M11 4c3 0 7 2 7 7 0 4-3 8-7 8"/></svg>Craft</a>
+    <a href="#cart" data-nav="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>Cart<span class="dot" id="navDot" hidden>0</span></a>
+  </div>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Product details"></div>
+<div class="overlay" id="payOverlay"><div class="card" id="payCard"></div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>
