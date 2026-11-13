@@ -1,4 +1,5 @@
 import { PRODUCTS, COLOUR_STORIES, STYLE_LABEL, SIZE_LABEL } from "./catalog.js";
+import { SHOP_PHOTOS } from "./shop-photos.js";
 const MARKETPLACE_URL = location.origin + location.pathname;
 const byId = id => PRODUCTS.find(p => p.id === id);
 
@@ -315,10 +316,12 @@ function priceHTML(p){
   if (p.price == null) return `<span class="price" style="font-size:15.5px">Quoted per order</span>`;
   return `<span class="price">${inr(p.price)}</span><small style="font-size:12px;color:var(--ink-3)">proposed</small>`;
 }
-function cardHTML(p){
+function cardHTML(p, usePhoto = false){
   const quote = p.price == null;
+  const photo = usePhoto === true ? SHOP_PHOTOS[p.id] : null;
   return `<article class="pcard">
-    <button class="plate" data-act="details" data-id="${p.id}" aria-label="View ${esc(p.name)}">${plateHTML(p)}</button>
+    <button class="plate${photo ? " plate-photo" : ""}" data-act="details" data-id="${p.id}" aria-label="View ${esc(p.name)}">${photo ? `<img src="${esc(photo.src)}" alt="${esc(photo.alt)}" width="900" height="1080" loading="lazy" decoding="async" style="object-position:${photo.position}">` : plateHTML(p)}</button>
+    ${photo ? `<div class="photo-caption"><span>Reference photo</span><a href="${esc(photo.credit)}" target="_blank" rel="noopener" aria-label="Photo source and licence for ${esc(p.name)}">Photo credit ↗</a></div>` : ""}
     <div class="pb">
       <div class="pname">${esc(p.name)}</div>
       <div class="tags"><span class="tag ${p.size}">${SIZE_LABEL[p.size]}</span><span class="tag ${p.style}">${STYLE_LABEL[p.style]}</span>${p.premium && p.style !== "custom" ? `<span class="tag">Premium</span>` : ""}</div>
@@ -927,7 +930,7 @@ function renderShop(){
     (!f.q || (p.name + " " + p.desc + " " + p.style + " " + p.size + " " + p.shape + " " + (p.material || "")).toLowerCase().includes(f.q.toLowerCase())));
   if (f.sort === "asc") list = list.filter(p => p.price != null).sort((a, b) => a.price - b.price).concat(list.filter(p => p.price == null));
   if (f.sort === "desc") list = list.filter(p => p.price != null).sort((a, b) => b.price - a.price).concat(list.filter(p => p.price == null));
-  $("#shopGrid").innerHTML = list.map(cardHTML).join("");
+  $("#shopGrid").innerHTML = list.map(p => cardHTML(p, true)).join("");
   $("#shopEmpty").innerHTML = list.length ? "" : `<div class="empty">No kandils match that search. <button class="linkbtn" data-act="clearFilters">Clear filters</button> or <a href="#chat">ask the shop</a>.</div>`;
   renderFilters();
 }
