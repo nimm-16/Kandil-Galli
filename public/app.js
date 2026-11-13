@@ -355,14 +355,16 @@ function sheetArt(p){
 }
 function renderSheet(){
   const p = byId(sheetState.id), quote = p.price == null;
+  const photo = SHOP_PHOTOS[p.id];
   const occ = p.size === "small" ? "Homes, balconies, windows and entrances" : "Larger homes, societies, offices, hotels and events";
   $("#sheet").innerHTML = `<button class="sheet-close" data-act="closeSheet" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <div class="sheet-in">
-    <div class="plate" id="sheetPlate" style="background:${(sheetArt(p) || p.art).bg}">${plateHTML(p, sheetArt(p))}</div>
+    <div class="plate${photo ? " plate-photo" : ""}" id="sheetPlate" style="background:${(sheetArt(p) || p.art).bg}">${photo ? `<img src="${esc(photo.src)}" alt="${esc(photo.alt)}" decoding="async" style="object-position:${photo.position}">` : plateHTML(p, sheetArt(p))}</div>
     <div class="sheet-body">
       <div class="tags"><span class="tag ${p.size}">${SIZE_LABEL[p.size]}</span><span class="tag ${p.style}">${STYLE_LABEL[p.style]}</span>${p.premium && p.style !== "custom" ? `<span class="tag">Premium</span>` : ""}</div>
       <h2>${esc(p.name)}</h2>
       <p style="color:var(--ink-2)">${esc(p.desc)}</p>
+      ${photo ? `<p style="font-size:12px;color:var(--ink-2)">Reference photo · <a href="${esc(photo.credit)}" target="_blank" rel="noopener">Photo source &amp; licence ↗</a></p>` : ""}
       <div class="pricerow">${priceHTML(p)}</div>
       <dl class="facts">
         <dt>Made from</dt><dd>${esc(p.material)}</dd>
@@ -387,7 +389,7 @@ function renderSheet(){
     </div>
   </div>`;
   const inp = $("#persName");
-  if (inp) inp.addEventListener("input", e => { sheetState.name = e.target.value; $("#sheetPlate").innerHTML = plateHTML(p, sheetArt(p)); $("#sheetPlate").style.background = sheetArt(p).bg; $("#fName").classList.remove("bad"); });
+  if (inp) inp.addEventListener("input", e => { sheetState.name = e.target.value; if (!photo) { $("#sheetPlate").innerHTML = plateHTML(p, sheetArt(p)); $("#sheetPlate").style.background = sheetArt(p).bg; } $("#fName").classList.remove("bad"); });
 }
 function closeSheet(){
   $("#scrim").classList.remove("on"); $("#sheet").classList.remove("on");
