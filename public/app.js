@@ -359,7 +359,7 @@ function renderSheet(){
   const occ = p.size === "small" ? "Homes, balconies, windows and entrances" : "Larger homes, societies, offices, hotels and events";
   $("#sheet").innerHTML = `<button class="sheet-close" data-act="closeSheet" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <div class="sheet-in">
-    <div class="plate${photo ? " plate-photo" : ""}" id="sheetPlate" style="background:${(sheetArt(p) || p.art).bg}">${photo ? `<img src="${esc(photo.src)}" alt="${esc(photo.alt)}" decoding="async" style="object-position:${photo.position}">` : plateHTML(p, sheetArt(p))}</div>
+    <div class="plate${photo ? " plate-photo" : ""}" id="sheetPlate" style="background:${(sheetArt(p) || p.art).bg}">${photo ? `<img src="${esc(photo.src)}" alt="${esc(photo.alt)}" decoding="async" style="position:absolute;inset:0;object-position:${photo.position}">` : plateHTML(p, sheetArt(p))}</div>
     <div class="sheet-body">
       <div class="tags"><span class="tag ${p.size}">${SIZE_LABEL[p.size]}</span><span class="tag ${p.style}">${STYLE_LABEL[p.style]}</span>${p.premium && p.style !== "custom" ? `<span class="tag">Premium</span>` : ""}</div>
       <h2>${esc(p.name)}</h2>
